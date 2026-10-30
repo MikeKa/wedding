@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Единый тайминг зала</title>
+  <style>
+    :root {
+      --ink: #1f2328;
+      --muted: #5a6470;
+      --line: #dfe3e8;
+      --accent: #8a6d3b;
+      --bg-soft: #f7f5f1;
+      --crit: #b3261e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      line-height: 1.45;
+      font-size: 15px;
+      background: #fff;
+    }
+
+    h1 {
+      font-size: 22px;
+      line-height: 1.25;
+      margin: 0 0 4px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 17px;
+      margin: 28px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 15px;
+      margin: 20px 0 8px;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    ul,
+    ol {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .role {
+      background: var(--bg-soft);
+      border-left: 3px solid var(--accent);
+      padding: 10px 12px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 4px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      vertical-align: top;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--bg-soft);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+    }
+
+    td:first-child {
+      white-space: nowrap;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    tr.crit td:first-child {
+      color: var(--crit);
+    }
+
+    .time {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .who {
+      font-weight: 600;
+    }
+
+    @media (max-width:560px) {
+      body {
+        padding: 12px;
+        font-size: 15px;
+      }
+
+      h1 {
+        font-size: 19px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+        width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        margin-bottom: 10px;
+        padding: 6px 8px;
+        background: #fff;
+      }
+
+      td {
+        border: none;
+        padding: 5px 4px;
+        font-size: 14px;
+      }
+
+      td:first-child {
+        font-size: 14px;
+        border-bottom: 1px dashed var(--line);
+        margin-bottom: 4px;
+        padding-bottom: 6px;
+        white-space: normal;
+      }
+
+      tr.crit {
+        border-color: var(--crit);
+      }
+
+      tr.crit td:first-child {
+        color: var(--crit);
+      }
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        font-size: 11.5pt;
+      }
+
+      h2 {
+        page-break-after: avoid;
+      }
+
+      table {
+        page-break-inside: auto;
+      }
+
+      tr {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Единый тайминг зала</h1>
+  <div class="subtitle">36 гостей · Ноябрь 2026 · Синхронизирован с планом банкетного менеджера</div>
+
+  <h2>Роли и зоны</h2>
+  <ul>
+    <li><span class="who">Банкетный менеджер</span> — зал, официанты, кухня, подача, вино. Единственный, кто
+      координирует зал.</li>
+    <li><span class="who">Ведущий (саксофонист)</span> — тосты, викторины, объявления, саксофон, общий круг, финал.</li>
+    <li><span class="who">Группа (5 музыкантов)</span> — 3 сета по 30 минут, саундчек в 15:00.</li>
+    <li><span class="who">Техник по звуку и свету</span> — свой сценарий. Сигналы никто не подаёт.</li>
+    <li><span class="who">Фотограф (профи)</span> — общее фото (собирает гостей сам), репортаж.</li>
+    <li><span class="who">Фотограф (брат невесты)</span> — утро, ЗАГС, фотосессия 15:30–16:00. С 16:00 — гость.</li>
+    <li><span class="who">Официанты (4)</span> — подача, разлив вина, опрос по кофе. В зоне менеджера.</li>
+  </ul>
+
+  <h2>До прихода гостей (13:00–16:00)</h2>
+  <table>
+    <tbody>
+      <tr>
+        <td class="time">13:00</td>
+        <td><span class="who">Менеджер:</span> прибыть на площадку, проверить зал и фуршетную зону. <span
+            class="who">Техник:</span> на площадке, готовит свет и звук.</td>
+      </tr>
+      <tr>
+        <td class="time">14:00</td>
+        <td><span class="who">Менеджер:</span> встретить торт (7 кг, охлаждён). <span class="who">Группа:</span>
+          прибывает, разгрузка.</td>
+      </tr>
+      <tr>
+        <td class="time">14:45</td>
+        <td><span class="who">Менеджер:</span> столы сервированы, шампанское и вина охлаждаются.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">15:00</td>
+        <td><span class="who">Менеджер:</span> встретить группу, свести с техником. Саундчек (баланс саксофона и вокала,
+          свет). <span class="who">Менеджер:</span> убедиться в готовности кухни (судак/щёчки 18/18). Дать команду
+          официантам расставлять холодные закуски.</td>
+      </tr>
+      <tr>
+        <td class="time">15:30</td>
+        <td><span class="who">Менеджер:</span> канапе, шампанское, бокалы, вода/лимонады. Книга пожеланий. План рассадки
+          на столах и экране ТВ. <span class="who">Фотограф (профи):</span> приезжает, готовит зону общего фото.</td>
+      </tr>
+      <tr>
+        <td class="time">15:45</td>
+        <td><span class="who">Менеджер:</span> финальная проверка зала, включает фоновую музыку. <span
+            class="who">Техник:</span> фоновая музыка на минимуме, тёплый свет.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Фуршет (16:00–17:00)</h2>
+  <table>
+    <tbody>
+      <tr>
+        <td class="time">16:00</td>
+        <td><span class="who">Менеджер:</span> встречает гостей у входа, провожает в зал. <span
+            class="who">Официанты:</span> шампанское на подносах, канапе, вода/лимонады. <span
+            class="who">Менеджер:</span> опрос по горячему (судак/щёчки, поровну). <span class="who">Техник:</span>
+          фоновая музыка (лаунж/джаз), тёплый свет.</td>
+      </tr>
+      <tr>
+        <td class="time">16:30</td>
+        <td><span class="who">Менеджер:</span> приезд пары, предложить шампанское. <span class="who">Фотограф
+            (профи):</span> репортаж фуршета, съёмка приезда пары. <span class="who">Ведущий:</span> проверяет микрофон,
+          готовится к приглашению к столу.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">16:45–16:55</td>
+        <td><span class="who">Фотограф (профи):</span> собирает всех гостей на общее фото в фуршетной зоне, 3–4 кадра.
+          <span class="who">Менеджер:</span> пауза в подаче, официанты не ходят, не мешают. <span
+            class="who">Техник:</span> яркий, ровный свет для фото.</td>
+      </tr>
+      <tr>
+        <td class="time">16:55</td>
+        <td><span class="who">Пара:</span> берёт микрофон, приглашает к столу. <span class="who">Менеджер:</span>
+          команда официантам — подача за столы. Фуршет сворачивается. <span class="who">Техник:</span> spotlight на
+          пару. <span class="who">Фотограф (профи):</span> съёмка приглашения и рассадки.</td>
+      </tr>
+      <tr>
+        <td class="time">17:00</td>
+        <td><span class="who">Менеджер:</span> опрос по горячему завершён, предпочтения на кухню. <span
+            class="who">Ведущий:</span> объявляет начало банкета, передаёт слово родителям невесты. <span
+            class="who">Официанты:</span> холодные закуски на столах.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Банкет: еда, тосты (17:00–19:00)</h2>
+  <table>
+    <tbody>
+      <tr>
+        <td class="time">17:00–17:05</td>
+        <td><span class="who">Ведущий:</span> начало банкета. <span class="who">Официанты:</span> холодные закуски,
+          Terra Pura.</td>
+      </tr>
+      <tr>
+        <td class="time">17:05–17:15</td>
+        <td><span class="who">Ведущий:</span> тост №1 — родители невесты (без ограничения). Пауза 3 минуты. <span
+            class="who">Техник:</span> spotlight на тостящих. <span class="who">Фотограф:</span> съёмка тоста.</td>
+      </tr>
+      <tr>
+        <td class="time">17:15–17:25</td>
+        <td><span class="who">Ведущий:</span> тост №2 — родители жениха (без ограничения). Пауза 3 минуты. <span
+            class="who">Официанты:</span> салат №1 к 17:45 (готовность).</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">17:25–17:29</td>
+        <td><span class="who">Пара:</span> первый танец (саксофон а капелла). <span class="who">Ведущий
+            (саксофонист):</span> играет соло. <span class="who">Техник:</span> «Эффект Золушки» — луч на пару. <span
+            class="who">Менеджер:</span> пауза в подаче. <span class="who">Фотограф:</span> 3–4 кадра танца.</td>
+      </tr>
+      <tr>
+        <td class="time">17:29–17:34</td>
+        <td><span class="who">Ведущий:</span> тост №3 — друг жениха (2 мин + 3 пауза). <span
+            class="who">Официанты:</span> Terra Pura.</td>
+      </tr>
+      <tr>
+        <td class="time">17:34–17:39</td>
+        <td><span class="who">Ведущий:</span> тост №4 — подруга невесты (2 + 3). <span class="who">Официанты:</span>
+          Terra Pura.</td>
+      </tr>
+      <tr>
+        <td class="time">17:39–17:44</td>
+        <td><span class="who">Ведущий:</span> тост №5+7 — брат и сестра невесты (2 + 3). <span
+            class="who">Официанты:</span> Terra Pura.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">17:45</td>
+        <td><span class="who">Менеджер:</span> салат №1 (Цезарь) на столах. <span class="who">Официанты:</span> разлив
+          Terra Pura. <span class="who">Ведущий:</span> тост №6 — брат жениха (Казаринов) 17:45–17:50, пауза 3 минуты.
+          <span class="who">Фотограф:</span> съёмка.</td>
+      </tr>
+      <tr>
+        <td class="time">17:50–17:55</td>
+        <td><span class="who">Ведущий:</span> тост №8 — сыны жениха (Артемий и Александр) 17:50–17:55, пауза 3 минуты.
+          <span class="who">Техник:</span> spotlight на сыновей.</td>
+      </tr>
+      <tr>
+        <td class="time">17:55–18:00</td>
+        <td><span class="who">Ведущий:</span> тост №9 — тётя и дядя жениха 17:55–18:00, пауза 3 минуты. <span
+            class="who">Официанты:</span> горячая закуска к 18:30 (готовность).</td>
+      </tr>
+      <tr>
+        <td class="time">18:00–18:10</td>
+        <td><span class="who">Ведущий:</span> свободный микрофон (1–2 мин каждому). <span class="who">Официанты:</span>
+          Mount Fishtail (готовность к 18:10).</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">18:10</td>
+        <td><span class="who">Менеджер:</span> салат №2 (с лососем) на столах. Начало Mount Fishtail. <span
+            class="who">Ведущий:</span> викторина №1 «Свадебное Бинго» (18:10–18:20). <span class="who">Фотограф:</span>
+          репортаж.</td>
+      </tr>
+      <tr>
+        <td class="time">18:20–18:30</td>
+        <td><span class="who">Ведущий:</span> свободное общение, подготовка к викторине №2. <span
+            class="who">Официанты:</span> Mount Fishtail, Speri.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">18:30</td>
+        <td><span class="who">Менеджер:</span> горячая закуска (меланцано) на столах. <span class="who">Ведущий:</span>
+          викторина №2 «Кто лучше знает пару?» (18:30–18:40). <span class="who">Официанты:</span> Mount Fishtail.</td>
+      </tr>
+      <tr>
+        <td class="time">18:40–19:00</td>
+        <td><span class="who">Ведущий:</span> свободное общение, подготовка к сету №1. <span class="who">Группа:</span>
+          готовится к выходу. <span class="who">Техник:</span> готовит световой переход (10 сек темноты → клубный свет)
+          к 19:00.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Танцевальная часть (19:00–21:30)</h2>
+  <table>
+    <tbody>
+      <tr class="crit">
+        <td class="time">19:00–19:30</td>
+        <td><span class="who">Группа:</span> сет №1 (соул и акустика). <span class="who">Ведущий:</span> ведёт сет.
+          <span class="who">Техник:</span> световой переход в 19:00, клубный свет. <span class="who">Менеджер:</span>
+          контроль расхода вина. <span class="who">Фотограф:</span> репортаж.</td>
+      </tr>
+      <tr>
+        <td class="time">19:30–20:00</td>
+        <td><span class="who">Менеджер:</span> ГОРЯЧЕЕ (судак/щёчки) — ведущий объявляет, подача к 19:35. <span
+            class="who">Ведущий (саксофонист):</span> саксофон соло 19:30–19:45, конкурс «Угадай мелодию» 19:45–20:00.
+          <span class="who">Техник:</span> мягкий «ресторанный» свет, саксофон в луче. <span
+            class="who">Официанты:</span> разлив Mount Fishtail (судак), Speri (щёчки).</td>
+      </tr>
+      <tr>
+        <td class="time">20:00–20:30</td>
+        <td><span class="who">Группа:</span> сет №2 (грув, танцы). <span class="who">Техник:</span> динамичный
+          танцевальный свет. <span class="who">Менеджер:</span> контроль вина, к 20:20 — два высоких стола (торт + Пино
+          Нуар).</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">20:30</td>
+        <td><span class="who">Группа:</span> сет №2 заканчивается. <span class="who">Ведущий:</span> приглашает всех
+          собраться в центре зала, взять бокалы, ждать торт. <span class="who">Официанты:</span> разливают Пино Нуар со
+          второго стола. <span class="who">Техник:</span> готовит янтарный свет к 20:40.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">20:40</td>
+        <td><span class="who">Менеджер:</span> вынос торта на центральный высокий стол. <span class="who">Техник:</span>
+          янтарный кинематографичный свет. <span class="who">Ведущий:</span> благодарности родителям, тост за торт.
+          <span class="who">Фотограф:</span> съёмка выноса, эмоций.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">20:40–20:55</td>
+        <td><span class="who">Гости:</span> едят торт (как удобно). <span class="who">Официанты:</span> опрос по
+          чаю/кофе (зерновой / Nespresso / чай чёрный / зелёный), запись по столам.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">20:55–21:00</td>
+        <td><span class="who">Официанты:</span> подача кофе/чая по результатам опроса.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">21:00–21:15</td>
+        <td><span class="who">Группа:</span> сет №3 (романтика). <span class="who">Ведущий:</span> ведёт сет. <span
+            class="who">Менеджер:</span> проверить трансфер для старших (с другом жениха). <span
+            class="who">Техник:</span> тёплый «закатный» свет.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">21:15–21:25</td>
+        <td><span class="who">Ведущий:</span> общий круг — все на танцполе, пара в центре. <span
+            class="who">Группа:</span> играет объединяющую песню. <span class="who">Техник:</span> мягкий тёплый свет.
+          <span class="who">Фотограф:</span> съёмка круга.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">21:25–21:30</td>
+        <td><span class="who">Ведущий:</span> последний медленный танец. <span class="who">Группа:</span> играет,
+          убавляет звук в конце. <span class="who">Техник:</span> мягкий свет. <span class="who">Пара:</span>
+          завершающие слова с благодарностями. <span class="who">Группа:</span> прекращает играть. <span
+            class="who">Техник:</span> включает фоновую музыку, активный свет ещё полчаса. <span
+            class="who">Менеджер:</span> бонбоньерки к выходу (21:40).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Отъезд и закрытие (21:30–22:00)</h2>
+  <table>
+    <tbody>
+      <tr>
+        <td class="time">21:30–21:40</td>
+        <td><span class="who">Пара:</span> уезжает. <span class="who">Менеджер + друг жениха:</span> провожают. <span
+            class="who">Техник:</span> фоновая музыка, активный свет. <span class="who">Фотограф:</span> съёмка отъезда.
+        </td>
+      </tr>
+      <tr>
+        <td class="time">21:40–22:00</td>
+        <td><span class="who">Менеджер:</span> гости расходятся, бонбоньерки на выходе. <span
+            class="who">Официанты:</span> уборка. <span class="who">Техник:</span> фоновая музыка 30 мин, активный свет.
+        </td>
+      </tr>
+      <tr>
+        <td class="time">22:00</td>
+        <td><span class="who">Техник:</span> яркий свет — официальное закрытие. <span class="who">Менеджер + друг
+            жениха:</span> финальная проверка: пара уехала, гости разошлись, подрядчики собрались.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Зоны ответственности (кратко)</h2>
+  <ul>
+    <li><span class="who">Менеджер:</span> зал, официанты, кухня, подача, вино, опрос по горячему/кофе, трансфер (с
+      другом жениха), бонбоньерки, закрытие.</li>
+    <li><span class="who">Ведущий:</span> тосты (17:05–18:00), викторины (18:10–18:40), саксофон (17:25–17:29,
+      19:30–20:00), приглашение к сбору в 20:30, общий круг 21:15–21:25, последний танец 21:25–21:30.</li>
+    <li><span class="who">Группа:</span> саундчек 15:00, сет №1 19:00–19:30, сет №2 20:00–20:30, сет №3 21:00–21:30 (с
+      убавлением звука в конце).</li>
+    <li><span class="who">Техник:</span> свой сценарий. Ключевые точки: 15:45 фон, 16:45 яркий свет для фото, 17:25
+      «Эффект Золушки», 19:00 переход, 20:40 янтарный, 21:15–21:30 мягкий, 21:30 фон + активный свет 30 мин, 22:00
+      яркий.</li>
+    <li><span class="who">Фотограф (профи):</span> приезд 15:30–16:00, общее фото 16:45–16:55 (собирает гостей сам),
+      репортаж весь вечер, ключевые кадры: первый танец, торт, общий круг, отъезд.</li>
+    <li><span class="who">Фотограф (брат невесты):</span> утро, ЗАГС, фотосессия 15:30–16:00. С 16:00 — гость.</li>
+    <li><span class="who">Официанты:</span> в зоне менеджера. Подача: 17:45 салат №1, 18:10 салат №2 + Mount Fishtail,
+      18:30 горячая закуска, 19:30 горячее, 20:40–20:55 опрос по кофе, 20:55–21:00 подача кофе.</li>
+  </ul>
+
+</body>
+
+</html>
