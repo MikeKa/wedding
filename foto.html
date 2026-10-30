@@ -1,267 +1,77 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Фотограф — тайминг</title>
-  <style>
-    :root {
-      --ink: #1f2328;
-      --muted: #5a6470;
-      --line: #dfe3e8;
-      --accent: #8a6d3b;
-      --bg-soft: #f7f5f1;
-      --crit: #b3261e;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--ink);
-      line-height: 1.45;
-      font-size: 15px;
-      background: #fff;
-    }
-
-    h1 {
-      font-size: 22px;
-      line-height: 1.25;
-      margin: 0 0 4px;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      font-size: 17px;
-      margin: 28px 0 10px;
-      padding-bottom: 6px;
-      border-bottom: 2px solid var(--accent);
-    }
-
-    p {
-      margin: 8px 0;
-    }
-
-    ul,
-    ol {
-      margin: 8px 0;
-      padding-left: 20px;
-    }
-
-    li {
-      margin: 6px 0;
-    }
-
-    .role {
-      background: var(--bg-soft);
-      border-left: 3px solid var(--accent);
-      padding: 10px 12px;
-      border-radius: 4px;
-      margin-bottom: 8px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 10px 0 4px;
-    }
-
-    th,
-    td {
-      text-align: left;
-      vertical-align: top;
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--line);
-      font-size: 14px;
-    }
-
-    th {
-      background: var(--bg-soft);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      color: var(--muted);
-    }
-
-    td:first-child {
-      white-space: nowrap;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    tr.crit td:first-child {
-      color: var(--crit);
-    }
-
-    .time {
-      font-variant-numeric: tabular-nums;
-    }
-
-    @media (max-width:560px) {
-      body {
-        padding: 12px;
-        font-size: 15px;
-      }
-
-      h1 {
-        font-size: 19px;
-      }
-
-      h2 {
-        font-size: 16px;
-      }
-
-      table,
-      thead,
-      tbody,
-      tr,
-      th,
-      td {
-        display: block;
-        width: 100%;
-      }
-
-      thead {
-        display: none;
-      }
-
-      tr {
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        margin-bottom: 10px;
-        padding: 6px 8px;
-        background: #fff;
-      }
-
-      td {
-        border: none;
-        padding: 5px 4px;
-        font-size: 14px;
-      }
-
-      td:first-child {
-        font-size: 14px;
-        border-bottom: 1px dashed var(--line);
-        margin-bottom: 4px;
-        padding-bottom: 6px;
-        white-space: normal;
-      }
-
-      tr.crit {
-        border-color: var(--crit);
-      }
-
-      tr.crit td:first-child {
-        color: var(--crit);
-      }
-    }
-
-    @media print {
-      body {
-        padding: 0;
-        font-size: 11.5pt;
-      }
-
-      h2 {
-        page-break-after: avoid;
-      }
-
-      table {
-        page-break-inside: auto;
-      }
-
-      tr {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Фотограф — тайминг</title>
+<style>
+  :root{--ink:#1f2328;--muted:#5a6470;--line:#dfe3e8;--accent:#8a6d3b;--bg-soft:#f7f5f1;--crit:#b3261e;}
+  *{box-sizing:border-box;}
+  body{margin:0;padding:16px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.45;font-size:15px;background:#fff;}
+  h1{font-size:22px;line-height:1.25;margin:0 0 4px;}
+  .subtitle{color:var(--muted);font-size:13px;margin-bottom:20px;}
+  h2{font-size:17px;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--accent);}
+  p{margin:8px 0;} ul,ol{margin:8px 0;padding-left:20px;} li{margin:6px 0;}
+  .role{background:var(--bg-soft);border-left:3px solid var(--accent);padding:10px 12px;border-radius:4px;margin-bottom:8px;}
+  table{width:100%;border-collapse:collapse;margin:10px 0 4px;}
+  th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line);font-size:14px;}
+  th{background:var(--bg-soft);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);}
+  td:first-child{white-space:nowrap;font-weight:600;color:var(--accent);}
+  tr.crit td:first-child{color:var(--crit);}
+  .time{font-variant-numeric:tabular-nums;}
+  .who{font-weight:600;}
+  @media (max-width:560px){
+    body{padding:12px;font-size:15px;} h1{font-size:19px;} h2{font-size:16px;}
+    table,thead,tbody,tr,th,td{display:block;width:100%;}
+    thead{display:none;}
+    tr{border:1px solid var(--line);border-radius:6px;margin-bottom:10px;padding:6px 8px;background:#fff;}
+    td{border:none;padding:5px 4px;font-size:14px;}
+    td:first-child{font-size:14px;border-bottom:1px dashed var(--line);margin-bottom:4px;padding-bottom:6px;white-space:normal;}
+    tr.crit{border-color:var(--crit);} tr.crit td:first-child{color:var(--crit);}
+  }
+  @media print{body{padding:0;font-size:11.5pt;} h2{page-break-after:avoid;} table{page-break-inside:auto;} tr{page-break-inside:avoid;}}
+</style>
 </head>
-
 <body>
 
-  <h1>Фотограф — тайминг</h1>
-  <div class="subtitle">36 гостей · Ноябрь 2026 · Ваша зона — с фуршета до отъезда</div>
+<h1>Фотограф (профи) — тайминг</h1>
+<div class="subtitle">36 гостей · Ноябрь 2026 · Ваша зона — с фуршета до отъезда</div>
 
-  <h2>Ваша роль</h2>
-  <div class="role">Общее фото (собираете гостей сами), репортаж весь вечер, ключевые кадры: первый танец, торт, общий
-    круг, отъезд. Утро, ЗАГС и фотосессию 15:30–16:00 снимает брат невесты — вы подключаетесь с 15:30–16:00.</div>
+<h2>Ваша роль</h2>
+<div class="role">Общее фото (собираете гостей сами), репортаж весь вечер, ключевые кадры: первый танец, торт, общий круг, отъезд. Утро, ЗАГС и фотосессию 15:30–16:00 снимает брат невесты — вы подключаетесь с 15:30–16:00.</div>
 
-  <h2>Ваш тайминг</h2>
-  <table>
-    <tbody>
-      <tr>
-        <td class="time">15:30–16:00</td>
-        <td>Приезд на площадку. Познакомиться с банкетным менеджером. Подготовить зону для общего фото (фуршетная зона).
-        </td>
-      </tr>
-      <tr>
-        <td class="time">16:00–16:45</td>
-        <td>Репортаж фуршета: гости, детали, эмоции. Съёмка приезда пары (16:30).</td>
-      </tr>
-      <tr class="crit">
-        <td class="time">16:45–16:55</td>
-        <td><strong>Общее фото всех гостей.</strong> Вы собираете гостей сами в фуршетной зоне. 3–4 кадра. Свет яркий,
-          ровный (техник знает).</td>
-      </tr>
-      <tr>
-        <td class="time">16:55–17:25</td>
-        <td>Съёмка приглашения к столу, рассадки, тостов родителей.</td>
-      </tr>
-      <tr class="crit">
-        <td class="time">17:25–17:29</td>
-        <td><strong>Первый танец</strong> — 3–4 кадра (общий план, крупный, детали). Свет «Эффект Золушки».</td>
-      </tr>
-      <tr>
-        <td class="time">17:29–18:40</td>
-        <td>Репортаж тостов (друг жениха, подруга невесты, брат и сестра невесты, брат жениха, сыны жениха, тётя и
-          дядя), свободный микрофон, викторины.</td>
-      </tr>
-      <tr>
-        <td class="time">18:40–19:00</td>
-        <td>Репортаж подачи горячего, подготовки к сету.</td>
-      </tr>
-      <tr>
-        <td class="time">19:00–19:30</td>
-        <td>Репортаж сета №1: танцы, эмоции, группа.</td>
-      </tr>
-      <tr>
-        <td class="time">19:30–20:00</td>
-        <td>Съёмка саксофона, конкурса «Угадай мелодию», горячего.</td>
-      </tr>
-      <tr>
-        <td class="time">20:00–20:30</td>
-        <td>Репортаж сета №2.</td>
-      </tr>
-      <tr class="crit">
-        <td class="time">20:30–20:40</td>
-        <td>Съёмка сбора гостей в центре зала, ожидания торта.</td>
-      </tr>
-      <tr class="crit">
-        <td class="time">20:40</td>
-        <td><strong>Вынос торта</strong> — ключевые кадры: торт, пара, эмоции, благодарности родителям. Свет янтарный.
-        </td>
-      </tr>
-      <tr>
-        <td class="time">20:40–21:00</td>
-        <td>Съёмка торта, кофе, гостей.</td>
-      </tr>
-      <tr>
-        <td class="time">21:00–21:15</td>
-        <td>Репортаж сета №3.</td>
-      </tr>
-      <tr class="crit">
-        <td class="time">21:15–21:25</td>
-        <td><strong>Общий круг</strong> — ключевые кадры: пара в центре, гости вокруг.</td>
-      </tr>
-      <tr class="crit">
-        <td class="time">21
+<h2>Ваш тайминг</h2>
+<table>
+  <tbody>
+    <tr><td class="time">15:30–16:00</td><td>Приезд на площадку. Познакомиться с банкетным менеджером. Подготовить зону для общего фото (фуршетная зона).</td></tr>
+    <tr><td class="time">16:00–16:45</td><td>Репортаж фуршета: гости, детали, эмоции. Съёмка приезда пары (16:30).</td></tr>
+    <tr class="crit"><td class="time">16:45–16:55</td><td><strong>Общее фото всех гостей.</strong> Вы собираете гостей сами в фуршетной зоне. 3–4 кадра. Свет яркий, ровный (техник знает).</td></tr>
+    <tr><td class="time">16:55–17:25</td><td>Съёмка приглашения к столу, рассадки, тостов родителей.</td></tr>
+    <tr class="crit"><td class="time">17:25–17:29</td><td><strong>Первый танец</strong> — 3–4 кадра (общий план, крупный, детали). Свет «Эффект Золушки».</td></tr>
+    <tr><td class="time">17:29–18:40</td><td>Репортаж тостов (друг жениха, подруга невесты, брат и сестра невесты, брат жениха, сыны жениха, тётя и дядя), свободный микрофон, викторины.</td></tr>
+    <tr><td class="time">18:40–19:00</td><td>Репортаж подачи горячего, подготовки к сету.</td></tr>
+    <tr><td class="time">19:00–19:30</td><td>Репортаж сета №1: танцы, эмоции, группа.</td></tr>
+    <tr><td class="time">19:30–20:00</td><td>Съёмка конкурса «Угадай мелодию», горячего.</td></tr>
+    <tr><td class="time">20:00–20:30</td><td>Репортаж сета №2.</td></tr>
+    <tr class="crit"><td class="time">20:30–20:40</td><td>Съёмка сбора гостей в центре зала, ожидания торта.</td></tr>
+    <tr class="crit"><td class="time">20:40</td><td><strong>Вынос торта</strong> — ключевые кадры: торт, пара, эмоции, благодарности родителям. Свет янтарный.</td></tr>
+    <tr><td class="time">20:40–21:00</td><td>Съёмка торта, кофе, гостей.</td></tr>
+    <tr><td class="time">21:00–21:15</td><td>Репортаж сета №3.</td></tr>
+    <tr class="crit"><td class="time">21:15–21:25</td><td><strong>Общий круг</strong> — ключевые кадры: пара в центре, гости вокруг.</td></tr>
+    <tr class="crit"><td class="time">21:25–21:30</td><td><strong>Последний медленный танец</strong> — ключевые кадры: пара, эмоции, слова благодарности.</td></tr>
+    <tr class="crit"><td class="time">21:30–21:40</td><td><strong>Отъезд пары</strong> — ключевые кадры: прощание, объятия, отъезд.</td></tr>
+    <tr><td class="time">21:40–22:00</td><td>Репортаж: гости расходятся, бонбоньерки. Съёмка до 22:00.</td></tr>
+  </tbody>
+</table>
+
+<h2>Что помнить</h2>
+<ul>
+  <li><strong>Общее фото 16:45–16:55</strong> — вы собираете гостей сами. 10 минут, 3–4 кадра, пока все свежие.</li>
+  <li>Ключевые кадры: первый танец (17:25), вынос торта (20:40), общий круг (21:15), последний танец (21:25), отъезд (21:30).</li>
+  <li>Утро, ЗАГС и фотосессию 15:30–16:00 снимает брат невесты. С 16:00 он — гость, официальную съёмку ведёте вы.</li>
+  <li>Свет на ключевых точках: «Эффект Золушки» (первый танец), янтарный (торт), мягкий тёплый (круг и последний танец).</li>
+  <li>Съёмка до 22:00 (официальное закрытие).</li>
+</ul>
+
+</body>
+</html>
