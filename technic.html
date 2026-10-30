@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Техник — свет и звук</title>
+  <style>
+    :root {
+      --ink: #1f2328;
+      --muted: #5a6470;
+      --line: #dfe3e8;
+      --accent: #8a6d3b;
+      --bg-soft: #f7f5f1;
+      --crit: #b3261e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      line-height: 1.45;
+      font-size: 15px;
+      background: #fff;
+    }
+
+    h1 {
+      font-size: 22px;
+      line-height: 1.25;
+      margin: 0 0 4px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 17px;
+      margin: 28px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    ul,
+    ol {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .role {
+      background: var(--bg-soft);
+      border-left: 3px solid var(--accent);
+      padding: 10px 12px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 4px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      vertical-align: top;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--bg-soft);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+    }
+
+    td:first-child {
+      white-space: nowrap;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    tr.crit td:first-child {
+      color: var(--crit);
+    }
+
+    .time {
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width:560px) {
+      body {
+        padding: 12px;
+        font-size: 15px;
+      }
+
+      h1 {
+        font-size: 19px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+        width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        margin-bottom: 10px;
+        padding: 6px 8px;
+        background: #fff;
+      }
+
+      td {
+        border: none;
+        padding: 5px 4px;
+        font-size: 14px;
+      }
+
+      td:first-child {
+        font-size: 14px;
+        border-bottom: 1px dashed var(--line);
+        margin-bottom: 4px;
+        padding-bottom: 6px;
+        white-space: normal;
+      }
+
+      tr.crit {
+        border-color: var(--crit);
+      }
+
+      tr.crit td:first-child {
+        color: var(--crit);
+      }
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        font-size: 11.5pt;
+      }
+
+      h2 {
+        page-break-after: avoid;
+      }
+
+      table {
+        page-break-inside: auto;
+      }
+
+      tr {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Техник по звуку и свету — сценарий</h1>
+  <div class="subtitle">36 гостей · Ноябрь 2026 · У вас свой сценарий, сигналы никто не подаёт</div>
+
+  <h2>Ваша роль</h2>
+  <div class="role">Свет и звук по вашему сценарию. Сигналы вам никто не подаёт — вы работаете по таймингу. Ключевые
+    точки: фоновая музыка, световые переходы, яркий свет в 22:00.</div>
+
+  <h2>Ваш сценарий</h2>
+  <table>
+    <tbody>
+      <tr>
+        <td class="time">13:00</td>
+        <td>На площадке. Подготовка света и звука.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">15:00</td>
+        <td>Саундчек группы (баланс саксофона и вокала). Проверка микрофонов (ведущий, пара).</td>
+      </tr>
+      <tr>
+        <td class="time">15:45</td>
+        <td>Фоновая музыка (лаунж/джаз) на минимуме. Тёплый, мягкий свет 2700–3000K.</td>
+      </tr>
+      <tr>
+        <td class="time">16:00–16:45</td>
+        <td>Фон на минимуме. Тёплый свет.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">16:45–16:55</td>
+        <td><strong>Яркий, ровный свет</strong> для общего фото.</td>
+      </tr>
+      <tr>
+        <td class="time">16:55–17:25</td>
+        <td>Spotlight на пару (приглашение к столу). Рабочий свет.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">17:25–17:29</td>
+        <td><strong>«Эффект Золушки»</strong> — луч на пару, остальное приглушено (первый танец).</td>
+      </tr>
+      <tr>
+        <td class="time">17:29–19:00</td>
+        <td>Рабочий свет, spotlight на тостящих. Фон на минимуме в паузах.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">19:00</td>
+        <td><strong>Световой переход: 10 секунд темноты → клубный свет</strong> (синий/янтарный, динамика). Начало сета
+          №1.</td>
+      </tr>
+      <tr>
+        <td class="time">19:30–20:00</td>
+        <td>Мягкий «ресторанный» свет, саксофон в луче.</td>
+      </tr>
+      <tr>
+        <td class="time">20:00–20:30</td>
+        <td>Динамичный танцевальный свет (сет №2).</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">20:40</td>
+        <td><strong>Янтарный кинематографичный свет</strong> — фокус на торте и паре.</td>
+      </tr>
+      <tr>
+        <td class="time">20:40–21:00</td>
+        <td>Янтарный свет. Фоновая музыка на минимуме.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">21:00–21:15</td>
+        <td>Тёплый «закатный» свет (сет №3).</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">21:15–21:30</td>
+        <td><strong>Мягкий тёплый свет</strong> (общий круг, последний танец).</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">21:30</td>
+        <td><strong>Фоновая музыка + активный свет на 30 минут.</strong></td>
+      </tr>
+      <tr class="crit">
+        <td class="time">22:00</td>
+        <td><strong>Яркий свет</strong> — официальное закрытие. Фоновая музыка выключается.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Что помнить</h2>
+  <ul>
+    <li>Сигналы вам никто не подаёт — работаете по таймингу.</li>
+    <li>Ключевые переходы: 19:00 (клубный), 20:40 (янтарный), 21:30 (фон + активный свет), 22:00 (яркий).</li>
+    <li>Микрофоны: ведущий, пара, саксофон (для соло).</li>
+    <li>Фоновая музыка в паузах между тостами — <strong>на минимуме</strong>, не громче.</li>
+  </ul>
+
+</body>
+
+</html>
