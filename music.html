@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ведущий и группа — тайминг</title>
+  <style>
+    :root {
+      --ink: #1f2328;
+      --muted: #5a6470;
+      --line: #dfe3e8;
+      --accent: #8a6d3b;
+      --bg-soft: #f7f5f1;
+      --crit: #b3261e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      line-height: 1.45;
+      font-size: 15px;
+      background: #fff;
+    }
+
+    h1 {
+      font-size: 22px;
+      line-height: 1.25;
+      margin: 0 0 4px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 17px;
+      margin: 28px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    ul,
+    ol {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .role {
+      background: var(--bg-soft);
+      border-left: 3px solid var(--accent);
+      padding: 10px 12px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 4px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      vertical-align: top;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--bg-soft);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+    }
+
+    td:first-child {
+      white-space: nowrap;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    tr.crit td:first-child {
+      color: var(--crit);
+    }
+
+    .time {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .who {
+      font-weight: 600;
+    }
+
+    @media (max-width:560px) {
+      body {
+        padding: 12px;
+        font-size: 15px;
+      }
+
+      h1 {
+        font-size: 19px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+        width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        margin-bottom: 10px;
+        padding: 6px 8px;
+        background: #fff;
+      }
+
+      td {
+        border: none;
+        padding: 5px 4px;
+        font-size: 14px;
+      }
+
+      td:first-child {
+        font-size: 14px;
+        border-bottom: 1px dashed var(--line);
+        margin-bottom: 4px;
+        padding-bottom: 6px;
+        white-space: normal;
+      }
+
+      tr.crit {
+        border-color: var(--crit);
+      }
+
+      tr.crit td:first-child {
+        color: var(--crit);
+      }
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        font-size: 11.5pt;
+      }
+
+      h2 {
+        page-break-after: avoid;
+      }
+
+      table {
+        page-break-inside: auto;
+      }
+
+      tr {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Ведущий и группа — тайминг</h1>
+  <div class="subtitle">36 гостей · Ноябрь 2026 · Единый сценарий</div>
+
+  <h2>Роли</h2>
+  <div class="role"><span class="who">Ведущий (саксофонист, руководитель группы)</span> — ведение вечера, тосты,
+    викторины, объявления, первый танец (саксофон а капелла), конкурс «Угадай мелодию», общий круг, последний танец,
+    финал.</div>
+  <div class="role"><span class="who">Группа (вокал, гитара, бас, барабаны)</span> — 3 сета по 30 минут. Саундчек в
+    15:00. В перерывах отдыхают, фоновая музыка от техника/ведущего.</div>
+  <p>Банкетный менеджер — зал и подача. Вы — сцена и слово. Техник работает по своему сценарию, сигналы ему никто не
+    подаёт.</p>
+
+  <h2>Тайминг</h2>
+  <table>
+    <tbody>
+      <tr>
+        <td class="time">14:00</td>
+        <td><span class="who">Группа:</span> прибытие, разгрузка, настройка инструментов. <span
+            class="who">Ведущий:</span> на связи, готовится к вечеру.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">15:00</td>
+        <td><span class="who">Группа + ведущий:</span> саундчек. Баланс саксофона и вокала. Проверка света с техником.
+        </td>
+      </tr>
+      <tr>
+        <td class="time">16:30</td>
+        <td><span class="who">Ведущий:</span> проверить микрофон.</td>
+      </tr>
+      <tr>
+        <td class="time">16:55</td>
+        <td><span class="who">Ведущий:</span> передать микрофон паре для приглашения к столу. После — объявить рассадку
+          (если нужно).</td>
+      </tr>
+      <tr>
+        <td class="time">17:00</td>
+        <td><span class="who">Ведущий:</span> объявить начало банкета. Передать слово родителям невесты (тост №1).</td>
+      </tr>
+      <tr>
+        <td class="time">17:05–17:15</td>
+        <td><span class="who">Ведущий:</span> тост №1 — родители невесты (без ограничения). Пауза 3 минуты: вы не
+          говорите, фон на минимуме.</td>
+      </tr>
+      <tr>
+        <td class="time">17:15–17:25</td>
+        <td><span class="who">Ведущий:</span> тост №2 — родители жениха (без ограничения). Пауза 3 минуты.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">17:25–17:29</td>
+        <td><span class="who">Ведущий:</span> первый танец. Играет саксофон а капелла (трек согласован заранее). Если
+          играете сами — не говорите, просто играйте. <span class="who">Группа:</span> не играет.</td>
+      </tr>
+      <tr>
+        <td class="time">17:29–17:34</td>
+        <td><span class="who">Ведущий:</span> тост №3 — друг жениха (2 мин + 3 пауза).</td>
+      </tr>
+      <tr>
+        <td class="time">17:34–17:39</td>
+        <td><span class="who">Ведущий:</span> тост №4 — подруга невесты (2 + 3).</td>
+      </tr>
+      <tr>
+        <td class="time">17:39–17:44</td>
+        <td><span class="who">Ведущий:</span> тост №5+7 — брат и сестра невесты (2 + 3).</td>
+      </tr>
+      <tr>
+        <td class="time">17:45–17:50</td>
+        <td><span class="who">Ведущий:</span> тост №6 — брат жениха (Казаринов) (2 + 3).</td>
+      </tr>
+      <tr>
+        <td class="time">17:50–17:55</td>
+        <td><span class="who">Ведущий:</span> тост №8 — сыны жениха (Артемий и Александр) (2 + 3).</td>
+      </tr>
+      <tr>
+        <td class="time">17:55–18:00</td>
+        <td><span class="who">Ведущий:</span> тост №9 — тётя и дядя жениха (2 + 3).</td>
+      </tr>
+      <tr>
+        <td class="time">18:00–18:10</td>
+        <td><span class="who">Ведущий:</span> свободный микрофон (1–2 мин каждому). Модерируете, следите за регламентом.
+        </td>
+      </tr>
+      <tr class="crit">
+        <td class="time">18:10–18:20</td>
+        <td><span class="who">Ведущий:</span> викторина №1 «Свадебное Бинго» (знакомство, карточки 3×3).</td>
+      </tr>
+      <tr>
+        <td class="time">18:20–18:30</td>
+        <td><span class="who">Ведущий:</span> свободное общение.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">18:30–18:40</td>
+        <td><span class="who">Ведущий:</span> викторина №2 «Кто лучше знает пару?» (за столами, 10 мин).</td>
+      </tr>
+      <tr>
+        <td class="time">18:40–19:00</td>
+        <td><span class="who">Ведущий:</span> свободное общение, подготовка к сету №1. <span class="who">Группа:</span>
+          готовность к выходу, выход на сцену.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">19:00–19:30</td>
+        <td><span class="who">Группа:</span> <strong>СЕТ №1</strong> — тёплый соул и акустика. <span
+            class="who">Ведущий:</span> ведёт сет (объявляет песни, общается с залом).</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">19:30</td>
+        <td><span class="who">Ведущий:</span> объявить: «А теперь — горячее!» Это сигнал менеджеру и гостям.</td>
+      </tr>
+      <tr>
+        <td class="time">19:30–20:00</td>
+        <td><span class="who">Ведущий:</span> конкурс «Угадай мелодию» (15 мин): играете фрагменты (10–15 сек), гости
+          угадывают. Приз — бутылка вина. <span class="who">Группа:</span> перерыв, отдыхают.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">20:00–20:30</td>
+        <td><span class="who">Группа:</span> <strong>СЕТ №2</strong> — грув, танцы, саксофон. <span
+            class="who">Ведущий:</span> ведёт сет.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">20:30</td>
+        <td><span class="who">Ведущий:</span> после окончания сета №2 — пригласить всех собраться в центре зала, взять
+          бокалы, ждать торт. <span class="who">Группа:</span> сет закончен, перерыв.</td>
+      </tr>
+      <tr>
+        <td class="time">20:40</td>
+        <td><span class="who">Ведущий:</span> вынос торта. Тост за торт. Благодарности родителям. <span
+            class="who">Группа:</span> перерыв.</td>
+      </tr>
+      <tr>
+        <td class="time">20:40–21:00</td>
+        <td><span class="who">Ведущий:</span> гости едят торт. Отдых, подготовка к сету №3. <span
+            class="who">Группа:</span> отдых.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">21:00–21:15</td>
+        <td><span class="who">Группа:</span> <strong>СЕТ №3</strong> — мощная романтика. <span
+            class="who">Ведущий:</span> ведёт сет.</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">21:15–21:25</td>
+        <td><span class="who">Ведущий:</span> общий круг: «Все на танцполе, пара в центре. Это наш круг любви и
+          поддержки». <span class="who">Группа:</span> играет объединяющую песню (согласована заранее).</td>
+      </tr>
+      <tr class="crit">
+        <td class="time">21:25–21:30</td>
+        <td><span class="who">Ведущий:</span> последний медленный танец (<strong>мелодия согласована заранее</strong>).
+          <span class="who">Группа:</span> играет, <strong>убавляет звук в конце.</strong> <span
+            class="who">Пара:</span> завершающие слова с благодарностями. <span class="who">Группа:</span>
+          <strong>прекращает играть.</strong></td>
+      </tr>
+      <tr>
+        <td class="time">21:30</td>
+        <td><span class="who">Ведущий:</span> передать слово паре для заключительного слова (если не сказали в танце).
+          Объявить отъезд. <span class="who">Группа:</span> отдых.</td>
+      </tr>
+      <tr>
+        <td class="time">22:00</td>
+        <td><span class="who">Группа:</span> сбор инструментов, отъезд.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Что помнить</h2>
+  <ul>
+    <li><strong>Тосты родителей — без ограничения по времени.</strong> Остальные — 2 минуты, пауза 3 минуты.</li>
+    <li>В паузах между тостами <strong>ведущий не говорит</strong> — фон на минимуме, гости поднимают бокалы.</li>
+    <li>Викторины — лёгкие, без выхода из-за стола (кроме «Бинго»).</li>
+    <li>Саксофон соло убран. В 19:30–20:00 — только конкурс «Угадай мелодию» (15 мин).</li>
+    <li>Сеты — <strong>ровно 30 минут</strong>, без перерыва внутри. В перерывах группа не играет.</li>
+    <li><strong>Первый танец, общий круг и последний медленный танец — мелодии согласованы заранее.</strong></li>
+    <li>В 20:30 — ведущий приглашает всех в центр. В 20:40 — торт. В 21:15 — общий круг. В 21:25 — последний танец,
+      <strong>убавить звук в конце</strong>, затем прекратить играть.</li>
+    <li>Саундчек в 15:00 — обязательно, баланс саксофона и вокала.</li>
+    <li><strong>Сбор инструментов и отъезд группы — в 22:00.</strong></li>
+  </ul>
+
+</body>
+
+</html>
