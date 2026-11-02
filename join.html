@@ -175,7 +175,60 @@
         color: var(--crit);
       }
     }
+/* ── Кнопка «Домой» ─────────────────────────────────── */
+.home-btn {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px 8px 10px;
+  background:
+    linear-gradient(#fffdf9, #fffdf9) padding-box,
+    linear-gradient(135deg, #e7d6bf, #c9b39a, #e7d6bf) border-box;
+  border: 1.5px solid transparent;
+  border-radius: 30px;
+  color: #8a735c;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow:
+    0 4px 12px rgba(150, 120, 85, 0.18),
+    0 1px 3px rgba(150, 120, 85, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
 
+.home-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 16px rgba(150, 120, 85, 0.22),
+    0 2px 4px rgba(150, 120, 85, 0.1);
+}
+
+.home-btn:active {
+  transform: translateY(0);
+}
+
+.home-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  stroke: #b08d6a;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Скрываем кнопку при печати */
+@media print {
+  .home-btn { display: none !important; }
+}
     @media print {
       body {
         padding: 0;
