@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>План рассадки гостей — 16:9</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @page {
+      size: 338.7mm 190.5mm;
+      margin: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, #fdf6ee 0%, transparent 60%),
+        radial-gradient(circle at 85% 90%, #f7ece0 0%, transparent 55%),
+        #faf5ee;
+      color: #4a3f36;
+      padding: 14px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "❦";
+      position: fixed;
+      font-size: 90px;
+      color: rgba(190, 160, 120, 0.10);
+      pointer-events: none;
+    }
+
+    body::before {
+      top: 10px;
+      left: 16px;
+      transform: rotate(-15deg);
+    }
+
+    body::after {
+      bottom: 10px;
+      right: 16px;
+      transform: rotate(15deg);
+    }
+
+    /* ─────────────────────────────────────────────────────
+     Внешний контейнер задаёт финальный размер на экране.
+     Внутри — карточка фиксированного размера 1600×900,
+     масштабируемая через transform: scale().
+     ───────────────────────────────────────────────────── */
+    .stage {
+      position: relative;
+      width: min(calc(100vw - 28px), calc((100vh - 28px) * 16 / 9), 1600px);
+      height: min(calc(100vw - 28px) * 9 / 16, calc(100vh - 28px), 900px);
+      aspect-ratio: 16 / 9;
+    }
+
+    .page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1600px;
+      height: 900px;
+      transform-origin: top left;
+      /* scale задаётся из JS — один раз и при resize */
+      background:
+        linear-gradient(#fffdf9, #fffdf9) padding-box,
+        linear-gradient(135deg, #e7d6bf, #c9b39a, #e7d6bf) border-box;
+      border: 2px solid transparent;
+      border-radius: 18px;
+      padding: 18px 26px 14px;
+      box-shadow:
+        0 20px 50px rgba(150, 120, 85, 0.14),
+        0 2px 6px rgba(150, 120, 85, 0.06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(201, 179, 154, 0.5);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    /* ── Всё дальше — ровно ваш исходный CSS без изменений ── */
+    .top-line {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 13px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #8a735c;
+      font-weight: 500;
+      flex-shrink: 0;
+      padding: 0 2px;
+      margin-bottom: 4px;
+    }
+
+    .top-line .restaurant {
+      text-align: left;
+    }
+
+    .top-line .date {
+      text-align: right;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .header .monogram {
+      font-family: 'Great Vibes', cursive;
+      font-size: 34px;
+      color: #b08d6a;
+      line-height: 1;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #6b5b4b;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .header .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #c9b39a;
+      font-size: 13px;
+    }
+
+    .header .divider::before,
+    .header .divider::after {
+      content: "";
+      width: 55px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9b39a);
+    }
+
+    .header .divider::after {
+      background: linear-gradient(90deg, #c9b39a, transparent);
+    }
+
+    .guest-zone {
+      position: relative;
+      flex: 1 1 auto;
+      border: 1.5px dashed #d3c0a8;
+      border-radius: 14px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(247, 236, 224, 0.55), transparent 70%),
+        rgba(253, 250, 245, 0.5);
+      padding: 6px 10px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .presidium-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 0;
+      margin-bottom: 2px;
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    .head-table {
+      width: 230px;
+      height: 115px;
+      background: linear-gradient(160deg, #f7ecdf, #ecd9c2);
+      border: 1.5px solid #c9b39a;
+      border-radius: 14px 14px 115px 115px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 8px 4px;
+      box-shadow: 0 6px 16px rgba(180, 150, 120, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      position: relative;
+    }
+
+    .head-table::before {
+      content: "♡";
+      position: absolute;
+      bottom: 9px;
+      font-size: 20px;
+      color: #b08d6a;
+    }
+
+    .head-table::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 11px 11px 111px 111px;
+      pointer-events: none;
+    }
+
+    .head-table .names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 35px;
+      color: #6b5b4b;
+      line-height: 1.05;
+    }
+
+    .tables-arc {
+      position: relative;
+      width: 100%;
+      max-width: 1420px;
+      height: 100%;
+      min-height: 0;
+      margin-top: 2px;
+      flex: 1 1 auto;
+    }
+
+    .table {
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #ffffff 0%, #fdfaf6 60%, #f7efe5 100%);
+      border: 1.5px solid #d9c7b0;
+      box-shadow:
+        0 8px 20px rgba(150, 120, 85, 0.16),
+        inset 0 0 0 6px rgba(255, 255, 255, 0.85),
+        inset 0 0 0 7px rgba(201, 179, 154, 0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 18px;
+    }
+
+    .table .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #c9a87e, #b08d6a);
+      padding: 3px 16px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+      box-shadow: 0 2px 6px rgba(176, 141, 106, 0.35);
+    }
+
+    .table ul {
+      list-style: none;
+      line-height: 1.55;
+      color: #4a3f36;
+      font-size: 14px;
+      font-weight: 400;
+      max-width: 230px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .table li {
+      padding: 0.5px 0;
+    }
+
+    .table::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px dashed rgba(201, 179, 154, 0.55);
+      pointer-events: none;
+    }
+
+    .chairs {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .chair {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9a87e, #b08d6a);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(150, 120, 85, 0.45);
+      transform:
+        translate(-50%, -50%) rotate(var(--angle)) translate(155px) rotate(calc(-1 * var(--angle)));
+      z-index: 2;
+    }
+
+    .t1 {
+      left: 13%;
+      top: -40px;
+      transform: translateX(-50%);
+    }
+
+    .t2 {
+      left: 36%;
+      top: 220px;
+      transform: translateX(-50%);
+    }
+
+    .t3 {
+      left: 64%;
+      top: 220px;
+      transform: translateX(-50%);
+    }
+
+    .t4 {
+      left: 87%;
+      top: -40px;
+      transform: translateX(-50%);
+    }
+
+    .footer-note {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 34px;
+      color: #b08d6a;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    @media print {
+
+      html,
+      body {
+        width: 338.7mm;
+        height: 190.5mm;
+        background: #fff;
+        padding: 0;
+        margin: 0;
+        display: block;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body::before,
+      body::after {
+        display: none;
+      }
+
+      .stage {
+        width: 338.7mm;
+        height: 190.5mm;
+      }
+
+      .page {
+        width: 338.7mm;
+        height: 190.5mm;
+        transform: none !important;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 6mm 10mm;
+      }
+
+      .page::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stage">
+    <div class="page" id="page">
+
+      <div class="top-line">
+        <div class="restaurant">Ресторан "Террин"</div>
+        <div class="date">07.11.2026</div>
+      </div>
+
+      <div class="header">
+        <div class="monogram">M &amp; K</div>
+        <h1>План рассадки гостей</h1>
+        <div class="divider">❦</div>
+      </div>
+
+      <div class="guest-zone">
+
+        <div class="presidium-wrap">
+          <div class="head-table">
+            <div class="names">Михаил &amp; Ксения</div>
+          </div>
+        </div>
+
+        <div class="tables-arc">
+
+          <div class="table t1">
+            <span class="num">Стол 1</span>
+            <ul>
+              <li>1 — Каширский Александр</li>
+              <li>2 — Каширская Людмила</li>
+              <li>3 — Трегубов Борис</li>
+              <li>4 — Трегубова Марина</li>
+              <li>5 — Смагин Михаил</li>
+              <li>6 — Смагина Алла</li>
+              <li>7 — Данилов Марк</li>
+              <li>8 — Данилова Оксана</li>
+            </ul>
+            <div class="chairs">
+              <div class="chair" style="--angle: 180deg;">1</div>
+              <div class="chair" style="--angle: 135deg;">2</div>
+              <div class="chair" style="--angle: 90deg;">3</div>
+              <div class="chair" style="--angle: 45deg;">4</div>
+              <div class="chair" style="--angle: 0deg;">5</div>
+              <div class="chair" style="--angle: -45deg;">6</div>
+              <div class="chair" style="--angle: -90deg;">7</div>
+              <div class="chair" style="--angle: -135deg;">8</div>
+            </div>
+          </div>
+
+          <div class="table t2">
+            <span class="num">Стол 2</span>
+            <ul>
+              <li>1 — Казаринов Дмитрий</li>
+              <li>2 — Смагин Алексей</li>
+              <li>3 — Абрамова Александра</li>
+              <li>4 — Мамаев Алексей</li>
+              <li>5 — Мамаева Милана</li>
+              <li>6 — Каширский Артемий</li>
+              <li>7 — Макграт Виктория</li>
+              <li>8 — Каширский Александр мл.</li>
+            </ul>
+            <div class="chairs">
+              <div class="chair" style="--angle: 120deg;">1</div>
+              <div class="chair" style="--angle: 75deg;">2</div>
+              <div class="chair" style="--angle: 30deg;">3</div>
+              <div class="chair" style="--angle: -15deg;">4</div>
+              <div class="chair" style="--angle: -60deg;">5</div>
+              <div class="chair" style="--angle: -105deg;">6</div>
+              <div class="chair" style="--angle: -150deg;">7</div>
+              <div class="chair" style="--angle: -195deg;">8</div>
+            </div>
+          </div>
+
+          <div class="table t3">
+            <span class="num">Стол 3</span>
+            <ul>
+              <li>1 — Михаилова Татьяна</li>
+              <li>2 — Молохов Андрей</li>
+              <li>3 — Петрова Мария</li>
+              <li>4 — Кожевникова Анна</li>
+              <li>5 — Гребенщиков Илья</li>
+              <li>6 — Гребенщикова Наталья</li>
+              <li>7 — Алехин Павел</li>
+              <li>8 — Алехина Елена</li>
+              <li>9 — Батыров Ильдус</li>
+            </ul>
+            <div class="chairs">
+              <div class="chair" style="--angle: 60deg;">1</div>
+              <div class="chair" style="--angle: 20deg;">2</div>
+              <div class="chair" style="--angle: -20deg;">3</div>
+              <div class="chair" style="--angle: -60deg;">4</div>
+              <div class="chair" style="--angle: -100deg;">5</div>
+              <div class="chair" style="--angle: -140deg;">6</div>
+              <div class="chair" style="--angle: -180deg;">7</div>
+              <div class="chair" style="--angle: -220deg;">8</div>
+              <div class="chair" style="--angle: -260deg;">9</div>
+            </div>
+          </div>
+
+          <div class="table t4">
+            <span class="num">Стол 4</span>
+            <ul>
+              <li>1 — Чахрач Владислав</li>
+              <li>2 — Чахрач Ольга</li>
+              <li>3 — Сафонов Дмитрий</li>
+              <li>4 — Сафонова Олеся</li>
+              <li>5 — Храмцовский Станислав</li>
+              <li>6 — Храмцовская Мария</li>
+              <li>7 — Вейнблат Антон</li>
+              <li>8 — Вейнблат Олеся</li>
+            </ul>
+            <div class="chairs">
+              <div class="chair" style="--angle: 30deg;">1</div>
+              <div class="chair" style="--angle: -15deg;">2</div>
+              <div class="chair" style="--angle: -60deg;">3</div>
+              <div class="chair" style="--angle: -105deg;">4</div>
+              <div class="chair" style="--angle: -150deg;">5</div>
+              <div class="chair" style="--angle: -195deg;">6</div>
+              <div class="chair" style="--angle: -240deg;">7</div>
+              <div class="chair" style="--angle: -285deg;">8</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="footer-note">Спасибо, что сегодня вы вместе с нами!</div>
+    </div>
+  </div>
+
+  <script>
+    // Масштабируем карточку 1600×900 под размер .stage.
+    // .stage сам ограничен экраном и сохраняет 16:9.
+    const page = document.getElementById('page');
+    const stage = page.parentElement;
+
+    function fit() {
+      const scale = stage.clientWidth / 1600;
+      page.style.transform = 'scale(' + scale + ')';
+    }
+
+    window.addEventListener('resize', fit);
+    window.addEventListener('load', fit);
+    fit();
+  </script>
+</body>
+
+</html>

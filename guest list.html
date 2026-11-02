@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список гостей — Ксения и Михаил</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, #fdf6ee 0%, transparent 60%),
+        radial-gradient(circle at 85% 90%, #f7ece0 0%, transparent 55%),
+        #faf5ee;
+      color: #4a3f36;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    body::before,
+    body::after {
+      content: "❦";
+      position: fixed;
+      font-size: 90px;
+      color: rgba(190, 160, 120, 0.10);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      top: 10px;
+      left: 16px;
+      transform: rotate(-15deg);
+    }
+
+    body::after {
+      bottom: 10px;
+      right: 16px;
+      transform: rotate(15deg);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 560px;
+      background:
+        linear-gradient(#fffdf9, #fffdf9) padding-box,
+        linear-gradient(135deg, #e7d6bf, #c9b39a, #e7d6bf) border-box;
+      border: 2px solid transparent;
+      border-radius: 18px;
+      padding: 22px 20px 20px;
+      box-shadow:
+        0 20px 50px rgba(150, 120, 85, 0.14),
+        0 2px 6px rgba(150, 120, 85, 0.06);
+      position: relative;
+      z-index: 1;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(201, 179, 154, 0.5);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header .monogram {
+      font-family: 'Great Vibes', cursive;
+      font-size: 34px;
+      color: #b08d6a;
+      line-height: 1;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      color: #6b5b4b;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .header .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #c9b39a;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .header .divider::before,
+    .header .divider::after {
+      content: "";
+      width: 45px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9b39a);
+    }
+
+    .header .divider::after {
+      background: linear-gradient(90deg, #c9b39a, transparent);
+    }
+
+    .table-block {
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .table-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .table-title .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #c9a87e, #b08d6a);
+      padding: 3px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 6px rgba(176, 141, 106, 0.35);
+      flex-shrink: 0;
+    }
+
+    .table-title .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, #d9c7b0, transparent);
+    }
+
+    .table-title .count {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #a08060;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .guest {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 7px 4px;
+      border-bottom: 1px dotted rgba(201, 179, 154, 0.45);
+      font-size: 13.5px;
+      line-height: 1.35;
+    }
+
+    .guest:last-child {
+      border-bottom: none;
+    }
+
+    .guest .seat {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #c9a87e, #b08d6a);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(150, 120, 85, 0.35);
+    }
+
+    .guest .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 14.5px;
+      color: #4a3f36;
+      font-weight: 500;
+      flex: 1;
+      min-width: 0;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .guest .status {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #a08060;
+      text-align: right;
+      flex-shrink: 0;
+      max-width: 42%;
+    }
+
+    /* Президиум — акцентный блок */
+    .presidium-block .table-title .num {
+      background: linear-gradient(135deg, #b08d6a, #8a6a4a);
+    }
+
+    .presidium-block .guest .seat {
+      background: linear-gradient(135deg, #b08d6a, #8a6a4a);
+    }
+
+    .presidium-block .guest .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #6b5b4b;
+    }
+
+    .total {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(201, 179, 154, 0.5);
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #8a735c;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: #b08d6a;
+      margin-top: 16px;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 400px) {
+      .page {
+        padding: 18px 14px 16px;
+      }
+
+      .guest {
+        font-size: 12.5px;
+        gap: 8px;
+      }
+
+      .guest .name {
+        font-size: 13.5px;
+      }
+
+      .guest .status {
+        font-size: 9px;
+      }
+
+      .presidium-block .guest .name {
+        font-size: 14.5px;
+      }
+
+      .header h1 {
+        font-size: 16px;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
+
+      html,
+      body {
+        width: auto;
+        height: auto;
+        background: #fff;
+        padding: 0;
+        margin: 0;
+        display: block;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body::before,
+      body::after {
+        display: none;
+      }
+
+      .page {
+        max-width: none;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+
+      .page::before {
+        display: none;
+      }
+
+      .table-block {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <div class="header">
+      <div class="monogram">M &amp; K</div>
+      <h1>Список гостей</h1>
+      <div class="divider">❦</div>
+    </div>
+
+    <!-- Президиум -->
+    <div class="table-block presidium-block">
+      <div class="table-title">
+        <span class="num">Президиум</span>
+        <span class="line"></span>
+        <span class="count">2 человека</span>
+      </div>
+      <div class="guest">
+        <span class="seat">1</span>
+        <span class="name">Каширский Михаил</span>
+        <span class="status">жених</span>
+      </div>
+      <div class="guest">
+        <span class="seat">2</span>
+        <span class="name">Каширская Ксения</span>
+        <span class="status">невеста</span>
+      </div>
+    </div>
+
+    <!-- Стол 1 -->
+    <div class="table-block">
+      <div class="table-title">
+        <span class="num">Стол 1</span>
+        <span class="line"></span>
+        <span class="count">8 человек</span>
+      </div>
+      <div class="guest">
+        <span class="seat">1</span>
+        <span class="name">Каширский Александр</span>
+        <span class="status">отец жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">2</span>
+        <span class="name">Каширская Людмила</span>
+        <span class="status">мать жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">3</span>
+        <span class="name">Трегубов Борис</span>
+        <span class="status">дядя жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">4</span>
+        <span class="name">Трегубова Марина</span>
+        <span class="status">тётя жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">5</span>
+        <span class="name">Смагин Михаил</span>
+        <span class="status">отец невесты</span>
+      </div>
+      <div class="guest">
+        <span class="seat">6</span>
+        <span class="name">Смагина Алла</span>
+        <span class="status">мать невесты</span>
+      </div>
+      <div class="guest">
+        <span class="seat">7</span>
+        <span class="name">Данилов Марк</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">8</span>
+        <span class="name">Данилова Оксана</span>
+        <span class="status">друзья жениха</span>
+      </div>
+    </div>
+
+    <!-- Стол 2 -->
+    <div class="table-block">
+      <div class="table-title">
+        <span class="num">Стол 2</span>
+        <span class="line"></span>
+        <span class="count">8 человек</span>
+      </div>
+      <div class="guest">
+        <span class="seat">1</span>
+        <span class="name">Казаринов Дмитрий</span>
+        <span class="status">брат жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">2</span>
+        <span class="name">Смагин Алексей</span>
+        <span class="status">брат невесты</span>
+      </div>
+      <div class="guest">
+        <span class="seat">3</span>
+        <span class="name">Абрамова Александра</span>
+        <span class="status">сестра невесты</span>
+      </div>
+      <div class="guest">
+        <span class="seat">4</span>
+        <span class="name">Мамаев Алексей</span>
+        <span class="status">племянник невесты</span>
+      </div>
+      <div class="guest">
+        <span class="seat">5</span>
+        <span class="name">Мамаева Милана</span>
+        <span class="status">племянница невесты</span>
+      </div>
+      <div class="guest">
+        <span class="seat">6</span>
+        <span class="name">Каширский Артемий</span>
+        <span class="status">сын жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">7</span>
+        <span class="name">Макграт Виктория</span>
+        <span class="status">племянница жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">8</span>
+        <span class="name">Каширский Александр мл.</span>
+        <span class="status">сын жениха</span>
+      </div>
+    </div>
+
+    <!-- Стол 3 -->
+    <div class="table-block">
+      <div class="table-title">
+        <span class="num">Стол 3</span>
+        <span class="line"></span>
+        <span class="count">9 человек</span>
+      </div>
+      <div class="guest">
+        <span class="seat">1</span>
+        <span class="name">Михаилова Татьяна</span>
+        <span class="status">друзья невесты</span>
+      </div>
+      <div class="guest">
+        <span class="seat">2</span>
+        <span class="name">Молохов Андрей</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">3</span>
+        <span class="name">Петрова Мария</span>
+        <span class="status">друзья невесты</span>
+      </div>
+      <div class="guest">
+        <span class="seat">4</span>
+        <span class="name">Кожевникова Анна</span>
+        <span class="status">друзья невесты</span>
+      </div>
+      <div class="guest">
+        <span class="seat">5</span>
+        <span class="name">Гребенщиков Илья</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">6</span>
+        <span class="name">Гребенщикова Наталья</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">7</span>
+        <span class="name">Алехин Павел</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">8</span>
+        <span class="name">Алехина Елена</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">9</span>
+        <span class="name">Батыров Ильдус</span>
+        <span class="status">друзья жениха</span>
+      </div>
+    </div>
+
+    <!-- Стол 4 -->
+    <div class="table-block">
+      <div class="table-title">
+        <span class="num">Стол 4</span>
+        <span class="line"></span>
+        <span class="count">8 человек</span>
+      </div>
+      <div class="guest">
+        <span class="seat">1</span>
+        <span class="name">Чахрач Владислав</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">2</span>
+        <span class="name">Чахрач Ольга</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">3</span>
+        <span class="name">Сафонов Дмитрий</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">4</span>
+        <span class="name">Сафонова Олеся</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">5</span>
+        <span class="name">Храмцовский Станислав</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">6</span>
+        <span class="name">Храмцовская Мария</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">7</span>
+        <span class="name">Вейнблат Антон</span>
+        <span class="status">друзья жениха</span>
+      </div>
+      <div class="guest">
+        <span class="seat">8</span>
+        <span class="name">Вейнблат Олеся</span>
+        <span class="status">друзья жениха</span>
+      </div>
+    </div>
+
+    <!-- Итог -->
+    <div class="total">
+      <span>Всего человек</span>
+      <span>35</span>
+    </div>
+
+    <div class="footer-note">Спасибо, что сегодня вы вместе с нами!</div>
+
+  </div>
+</body>
+
+</html>
