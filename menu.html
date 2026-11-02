@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Меню — Ксения и Михаил</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, #fdf6ee 0%, transparent 60%),
+        radial-gradient(circle at 85% 90%, #f7ece0 0%, transparent 55%),
+        #faf5ee;
+      color: #4a3f36;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    body::before,
+    body::after {
+      content: "❦";
+      position: fixed;
+      font-size: 90px;
+      color: rgba(190, 160, 120, 0.10);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      top: 10px;
+      left: 16px;
+      transform: rotate(-15deg);
+    }
+
+    body::after {
+      bottom: 10px;
+      right: 16px;
+      transform: rotate(15deg);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 560px;
+      background:
+        linear-gradient(#fffdf9, #fffdf9) padding-box,
+        linear-gradient(135deg, #e7d6bf, #c9b39a, #e7d6bf) border-box;
+      border: 2px solid transparent;
+      border-radius: 18px;
+      padding: 22px 20px 20px;
+      box-shadow:
+        0 20px 50px rgba(150, 120, 85, 0.14),
+        0 2px 6px rgba(150, 120, 85, 0.06);
+      position: relative;
+      z-index: 1;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(201, 179, 154, 0.5);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    /* Шапка */
+    .header {
+      text-align: center;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header .monogram {
+      font-family: 'Great Vibes', cursive;
+      font-size: 34px;
+      color: #b08d6a;
+      line-height: 1;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      color: #6b5b4b;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .header .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #c9b39a;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .header .divider::before,
+    .header .divider::after {
+      content: "";
+      width: 45px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9b39a);
+    }
+
+    .header .divider::after {
+      background: linear-gradient(90deg, #c9b39a, transparent);
+    }
+
+    /* Раздел меню */
+    .menu-section {
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-section:last-of-type {
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-title .label {
+      font-family: 'Playfair Display', serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #c9a87e, #b08d6a);
+      padding: 3px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 6px rgba(176, 141, 106, 0.35);
+      flex-shrink: 0;
+    }
+
+    .section-title .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, #d9c7b0, transparent);
+    }
+
+    /* Карточка блюда */
+    .dish {
+      display: flex;
+      gap: 12px;
+      padding: 9px 4px;
+      border-bottom: 1px dotted rgba(201, 179, 154, 0.45);
+      align-items: flex-start;
+    }
+
+    .dish:last-child {
+      border-bottom: none;
+    }
+
+    .dish-image {
+      width: 76px;
+      height: 76px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid rgba(201, 179, 154, 0.5);
+      box-shadow: 0 2px 6px rgba(150, 120, 85, 0.12);
+      background: #f3ead9;
+    }
+
+    .dish-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .dish-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #4a3f36;
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+
+    .dish-desc {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: #7a6a5a;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 26px;
+      color: #b08d6a;
+      margin-top: 16px;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 400px) {
+      .page {
+        padding: 18px 14px 16px;
+      }
+
+      .dish-image {
+        width: 66px;
+        height: 66px;
+      }
+
+      .dish-name {
+        font-size: 13.5px;
+      }
+
+      .dish-desc {
+        font-size: 11px;
+      }
+
+      .header h1 {
+        font-size: 16px;
+      }
+    }
+
+    /* ── Кнопка «Домой» ─────────────────────────────────── */
+    .home-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px 8px 10px;
+      background:
+        linear-gradient(#fffdf9, #fffdf9) padding-box,
+        linear-gradient(135deg, #e7d6bf, #c9b39a, #e7d6bf) border-box;
+      border: 1.5px solid transparent;
+      border-radius: 30px;
+      color: #8a735c;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow:
+        0 4px 12px rgba(150, 120, 85, 0.18),
+        0 1px 3px rgba(150, 120, 85, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .home-btn:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 6px 16px rgba(150, 120, 85, 0.22),
+        0 2px 4px rgba(150, 120, 85, 0.1);
+    }
+
+    .home-btn:active {
+      transform: translateY(0);
+    }
+
+    .home-btn svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      stroke: #b08d6a;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Скрываем кнопку при печати */
+    @media print {
+      .home-btn {
+        display: none !important;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
+
+      html,
+      body {
+        width: auto;
+        height: auto;
+        background: #fff;
+        padding: 0;
+        margin: 0;
+        display: block;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body::before,
+      body::after {
+        display: none;
+      }
+
+      .page {
+        max-width: none;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+
+      .page::before {
+        display: none;
+      }
+
+      .menu-section {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <div class="header">
+      <div class="monogram">M &amp; K</div>
+      <h1>Меню</h1>
+      <div class="divider">❦</div>
+    </div>
+
+    <!-- Коллекция канапе -->
+    <div class="menu-section">
+      <div class="section-title">
+        <span class="label">Канапе</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/brusketta-s-rostbifom-i-vitello-kb93.jpg"
+          alt="Брускетта с ростбифом">
+        <div class="dish-info">
+          <div class="dish-name">Брускетта с ростбифом</div>
+          <div class="dish-desc">Соус вителло и каперсы</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/grechishnyi-tost-s-syrom-i-krasnoi-ikroi.jpg"
+          alt="Гречишный тост">
+        <div class="dish-info">
+          <div class="dish-name">Гречишный тост</div>
+          <div class="dish-desc">С мягким сыром и красной икрой</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image"
+          src="https://kp.caiter.ru/terrin/images/marmelad-iz-svekly-s-miagkim-syrom-i-karamelnymi-orekhami-17sq.jpg"
+          alt="Мармелад из свеклы">
+        <div class="dish-info">
+          <div class="dish-name">Мармелад из свёклы</div>
+          <div class="dish-desc">С мягким сыром и карамельными орехами</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/mini-motsarella-s-pesto.png"
+          alt="Мини моцарелла">
+        <div class="dish-info">
+          <div class="dish-name">Мини моцарелла</div>
+          <div class="dish-desc">С томатами и песто из базилика</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/meniu-svekla-dlia-zagruzki-0050.jpg"
+          alt="Огурец с угрём">
+        <div class="dish-info">
+          <div class="dish-name">Огурец с угрём</div>
+          <div class="dish-desc">Соус терияки</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image"
+          src="https://kp.caiter.ru/terrin/images/okorok-s-syrnym-mussom-i-ogurtsom-terrin-ou2d.jpg"
+          alt="Окорок с сырным муссом">
+        <div class="dish-info">
+          <div class="dish-name">Окорок с сырным муссом</div>
+          <div class="dish-desc">И корнишоном</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/352.jpg" alt="Профитроль с грибным пате">
+        <div class="dish-info">
+          <div class="dish-name">Профитроль с грибным пате</div>
+          <div class="dish-desc">Соус песто и фундук</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/358.jpg" alt="Профитроль с гусиным пате">
+        <div class="dish-info">
+          <div class="dish-name">Профитроль с гусиным пате</div>
+          <div class="dish-desc">И черри-томатами</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/meniu-svekla-dlia-zagruzki-0045.jpg"
+          alt="Террин из курицы">
+        <div class="dish-info">
+          <div class="dish-name">Террин из курицы</div>
+          <div class="dish-desc">С соусом из пармезана в кунжуте</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/brusketta-s-lososem-ogrutsom.jpg"
+          alt="Брускетта с лососем">
+        <div class="dish-info">
+          <div class="dish-name">Брускетта с лососем</div>
+          <div class="dish-desc">Огурцом и кремом из сливочного хрена</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Холодные закуски -->
+    <div class="menu-section">
+      <div class="section-title">
+        <span class="label">Холодные закуски</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image"
+          src="https://kp.caiter.ru/terrin/images/assorti-brezaola-s-gribnym-kremom-i-bazilikom-sheika-parmskaia-koppa-s-kremom-iz-maslin-i-tomatov-parmskaia-vetchina-s-inzhyrnym-krem-zq6u.jpg"
+          alt="Ассорти мясное">
+        <div class="dish-info">
+          <div class="dish-name">Мясное ассорти</div>
+          <div class="dish-desc">Брезаола с грибным кремом, шейка, пармская коппа, пармская ветчина с инжирным кремом
+          </div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/dikii-ulov.png" alt="Дикий улов">
+        <div class="dish-info">
+          <div class="dish-name">Дикий улов</div>
+          <div class="dish-desc">Маринованный тунец, лосось с/с, муксун холодного копчения, королевская креветка</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/ovoshchnaia-trapeza-1cnn.jpg"
+          alt="Овощная трапеза">
+        <div class="dish-info">
+          <div class="dish-name">Овощная трапеза</div>
+          <div class="dish-desc">Томаты, огурец, перец, редис, сельдерей, дайкон, морковь, укроп, кинза</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/okorok-vareno-kopchenyi-utinaia-grudka.png"
+          alt="Мясное плато">
+        <div class="dish-info">
+          <div class="dish-name">Окорок и утиная грудка</div>
+          <div class="dish-desc">Варено-копчёный окорок, утиная грудка на вишне, пастрами из курицы, язык говяжий,
+            вяленые томаты и артишоки</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image"
+          src="https://kp.caiter.ru/terrin/images/roll-iz-tsukini-s-mussom-iz-brynzy-vialenymi-tomatami-i-sousom-pesto.jpg"
+          alt="Ролл из цукини">
+        <div class="dish-info">
+          <div class="dish-name">Ролл из цукини на гриле</div>
+          <div class="dish-desc">Мусс из пикантной феты, вяленые томаты, соус «Красный песто»</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image"
+          src="https://kp.caiter.ru/terrin/images/syrnoe-assorti-grano-podano-cheddar-kamamber-dor-bliu-podaetsia-s-medom-orekhami-i-iagodami.jpg"
+          alt="Сырное ассорти">
+        <div class="dish-info">
+          <div class="dish-name">Сырное ассорти</div>
+          <div class="dish-desc">Камамбер, чеддер, дор блю с мёдом и грецким орехом</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image"
+          src="https://kp.caiter.ru/terrin/images/terrin-forel-tunets-s-ikroi-kizhucha-i-kunzhutnym-sousom.jpg"
+          alt="Террин из форели">
+        <div class="dish-info">
+          <div class="dish-name">Террин из мурманской форели</div>
+          <div class="dish-desc">С тунцом Bluefeen и икрой лосося</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/photo-2026-09-27-125445.jpeg"
+          alt="Фруктовое плато">
+        <div class="dish-info">
+          <div class="dish-name">Фруктово-ягодное плато</div>
+          <div class="dish-desc">Ананас, клубника, мандарин, груша, виноград, киви</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Салаты -->
+    <div class="menu-section">
+      <div class="section-title">
+        <span class="label">Салаты</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image"
+          src="https://kp.caiter.ru/terrin/images/listia-kopchenogo-romano-i-aisberga-s-kurinoi-grudkoi-vialenymi-tomatami-khrustiashchei-grechkoi-i-kramblom-iz-parmezana.jpg"
+          alt="Салат Цезарь">
+        <div class="dish-info">
+          <div class="dish-name">Салат с фермерским цыплёнком</div>
+          <div class="dish-desc">Листья романо, пармезан, соус Цезарь</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/photo-2026-09-27-094710.jpeg"
+          alt="Салат с лососем">
+        <div class="dish-info">
+          <div class="dish-name">Салат со слабосолёным лососем</div>
+          <div class="dish-desc">Маринованный фенхель, вяленая свёкла, цитрусовая заправка</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Горячие закуски -->
+    <div class="menu-section">
+      <div class="section-title">
+        <span class="label">Горячие закуски</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/melantsano-parmedzhano.jpg"
+          alt="Меланцано пармеджано">
+        <div class="dish-info">
+          <div class="dish-name">Меланцано пармеджано</div>
+          <div class="dish-desc">Запечённые баклажаны с моцареллой и сицилийским томатным соусом</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Горячее -->
+    <div class="menu-section">
+      <div class="section-title">
+        <span class="label">Горячее</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/sudak-s-ikroi-i-kremom-iz-seldereia.png"
+          alt="Судак">
+        <div class="dish-info">
+          <div class="dish-name">Судак</div>
+          <div class="dish-desc">Крем из сельдерея, икра щуки, соус шампань</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/46294860-0671.jpg" alt="Говяжьи щёчки">
+        <div class="dish-info">
+          <div class="dish-name">Томлённые говяжьи щёчки</div>
+          <div class="dish-desc">В красном вине, картофельное пюре, вешенки на гриле, зелёный горошек</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Выпечка -->
+    <div class="menu-section">
+      <div class="section-title">
+        <span class="label">Выпечка</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/photo-2026-08-30-16-31-51.jpg"
+          alt="Хлебная корзина">
+        <div class="dish-info">
+          <div class="dish-name">Хлебная корзина</div>
+          <div class="dish-desc">Кукурузные, бородинские булочки, чиабатта, гриссини, фирменное солёное масло Terrine
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Напитки -->
+    <div class="menu-section">
+      <div class="section-title">
+        <span class="label">Напитки</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/baikal-y6gg.webp" alt="Вода Байкал">
+        <div class="dish-info">
+          <div class="dish-name">Вода «Байкал»</div>
+          <div class="dish-desc">Питьевая</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/baikal-legendy.webp" alt="Легенды Байкала">
+        <div class="dish-info">
+          <div class="dish-name">«Легенды Байкала»</div>
+          <div class="dish-desc">Стекло, с газом и без газа</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/tarkhun-96eb.png" alt="Лимонад тархун">
+        <div class="dish-info">
+          <div class="dish-name">Лимонад «Тархун»</div>
+          <div class="dish-desc">На велком</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/klassika-limonad.png"
+          alt="Лимонад классический">
+        <div class="dish-info">
+          <div class="dish-name">Лимонад классический</div>
+          <div class="dish-desc">С мятой</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/mango.png" alt="Лимонад манго-маракуйя">
+        <div class="dish-info">
+          <div class="dish-name">Лимонад манго-маракуйя</div>
+          <div class="dish-desc">Фруктовый</div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <img class="dish-image" src="https://kp.caiter.ru/terrin/images/mors-iagodnyi-z1jf.PNG" alt="Морс">
+        <div class="dish-info">
+          <div class="dish-name">Морс домашний</div>
+          <div class="dish-desc">Ягодный</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-note">Спасибо, что сегодня вы вместе с нами!</div>
+
+  </div>
+</body>
+
+</html>
